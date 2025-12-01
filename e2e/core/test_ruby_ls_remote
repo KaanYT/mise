@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Install and build ruby using ruby-build
 
-assert_contains "mise ls-remote ruby@3" "3.0.0"
-assert_contains "mise ls-remote ruby@truffleruby-24" "truffleruby-24.0.0"
-assert_contains "mise ls-remote ruby@truffleruby+graalvm-24" "truffleruby+graalvm-24.0.0"
+export MISE_RUBY_INSTALL=1
+#latest=$(mise latest ruby)
+#assert_contains "mise x ruby@$latest -- ruby --version" "ruby $latest"
+#mise uninstall ruby
+export MISE_RUBY_INSTALL_REPO = "https://github.com/postmodern/ruby-install/archive/refs/heads/master.zip"
+latest=$(mise latest ruby)
+assert_contains "mise x ruby@$latest -- ruby --version" "ruby $latest"
